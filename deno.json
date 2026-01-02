@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "run": "deno --allow-read --allow-write main.ts"
+  }
+    "unstable": ["temporal"]
+}

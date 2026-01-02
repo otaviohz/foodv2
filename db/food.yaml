@@ -1,0 +1,70 @@
+- name: porco lombo
+  calories: 180
+  portion: 100
+  carbs: 0
+  fiber: 0
+  protein: 20
+  fat: 11.1
+  satfat: 4.17
+  sodium: 53.1
+  notes: tbca; cru; sem pele
+- name: frango peito
+  calories: 105
+  portion: 100
+  carbs: 0
+  fiber: 0
+  protein: 21.1
+  fat: 2.29
+  satfat: 0.83
+  sodium: 56
+  notes: tbca; cru; sem pele
+- name: feijao preto
+  portion: 100
+  calories: 62
+  carbs: 14
+  fiber: 8.4
+  protein: 4.48
+  fat: 0.54
+  satfat: 0.1
+  sodium: 1.85
+  notes: 'tbca: 50% caldo 50% grao, s/ oleo e s/ sal'
+- name: batata doce
+  portion: 100
+  calories: 92
+  carbs: 23.1
+  fiber: 2.74
+  protein: 0.85
+  fat: 0.18
+  satfat: 0
+  sodium: 3.39
+  notes: 'tbca: cozida, drenada, s/ oleo, s/ sal'
+- name: maca verde
+  portion: 100
+  calories: 64
+  carbs: 15.7
+  fiber: 2.07
+  protein: 0.29
+  fat: 0.49
+  satfat: 0.2
+  sodium: 0.66
+  notes: 'tbca: media de diferentes variedades'
+- name: frango peito desfiado nat
+  portion: 100
+  calories: 128
+  carbs: 0
+  fiber: 0
+  protein: 26
+  fat: 2.5
+  satfat: 0.8
+  sodium: 488
+  notes: ''
+- name: ovo cru
+  portion: 100
+  calories: 135
+  carbs: 2.13
+  fiber: 0
+  protein: 11.3
+  fat: 9.05
+  satfat: 2.64
+  sodium: 160
+  notes: '1 ovo ~60g; tbca, media de varias amostras'
