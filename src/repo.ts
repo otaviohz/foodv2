@@ -1,14 +1,15 @@
-import { DailyMacros, Food, Log, Weight } from "./types.ts";
+import { Food, Log, Macros, Weight } from "./types.ts";
 import { readYaml, writeYaml } from "./db.ts";
 import {} from "./utils.ts";
+import { add, scale, sum, zero } from "./nutrients.ts";
 
 const FOOD_DB = "./db/food.yaml";
 const LOG_DB = "./db/log.yaml";
 const WEIGHT_DB = "./db/weight.yaml";
-const DAILY_MACROS: DailyMacros = {
-  carbs: 0,
-  protein: 0,
-  fat: 0,
+const DAILY_MACROS: Macros = {
+  carbs: 185,
+  protein: 180,
+  fat: 50,
 };
 
 //
@@ -69,51 +70,28 @@ export async function saveLog(log: Log) {
   await writeYaml(LOG_DB, logs);
 }
 
-export async function showDay(date: string) {
-  const foods = await loadFoods();
-  const logs = await loadLogs();
+export async function showDay(day: string) {
+  const foodDb = await loadFoods();
+  const logDb = await loadLogs();
 
-  const day = date;
+  const date = day;
 
-  const entries = logs.filter((log) => log.date === day);
+  const entries = logDb.filter((log) => log.date === date);
 
-  const totals = {
-    calories: 0,
-    carbs: 0,
-    fiber: 0,
-    protein: 0,
-    fat: 0,
-    satfat: 0,
-    sodium: 0,
-    missingFoods: [] as string[],
-  };
-
-  let macros: DailyMacros = {
-    carbs: 0,
-    protein: 0,
-    fat: 0,
-  };
-
-  for (const entry of entries) {
-    const food = foods.foodMap.get(entry.food);
-
-    if (!food) {
-      totals.missingFoods.push(entry.food);
-      continue;
-    }
+  const totals = sum(entries, (entry) => {
+    const food = foodDb.foodMap.get(entry.food);
+    if (!food) return zero();
 
     const factor = entry.portion / food.portion;
+    return scale(food, factor);
+  });
 
-    totals.calories += food.calories * factor;
-    totals.carbs += food.carbs * factor;
-    totals.fiber += (food.fiber ?? 0) * factor;
-    totals.protein += food.protein * factor;
-    totals.fat += food.fat * factor;
-    totals.satfat += (food.satfat ?? 0) * factor;
-    totals.sodium += (food.sodium ?? 0) * factor;
-  }
+  const missingFoods = entries
+    .filter((e) => !foodDb.foodMap.has(e.food))
+    .map((e) => e.food);
 
   console.log(totals);
+  console.log(missingFoods);
 }
 
 //

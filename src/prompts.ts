@@ -3,7 +3,7 @@ import {
   Number as CNumber,
   prompt,
 } from "jsr:@cliffy/prompt@1.0.0-rc.8";
-import { DailyMacros, Food, Log, Weight } from "./types.ts";
+import { Food, Log, Macros, Weight } from "./types.ts";
 import { checkISODate, foodSuggestions, getISODate } from "./utils.ts";
 
 export async function promptFood() {
@@ -86,12 +86,6 @@ export async function promptLog(): Promise<Log> {
   const foodList = await foodSuggestions();
   const p = await prompt([
     {
-      name: "date",
-      message: "date: ",
-      type: Input,
-      default: getISODate(),
-    },
-    {
       name: "food",
       message: "Food: ",
       info: true,
@@ -105,8 +99,21 @@ export async function promptLog(): Promise<Log> {
       type: CNumber,
       min: 1,
     },
+    {
+      name: "date",
+      message: "date: ",
+      type: Input,
+      default: getISODate(),
+      validate: (v) => checkISODate(v),
+    },
   ]);
-  return p as Log;
+  const { date, food, portion } = p;
+  if (!date || !food || portion == null) {
+    throw new Error("Incomplete log entry");
+  }
+
+  const log: Log = { date, food, portion };
+  return log;
 }
 
 export async function promptWeight() {

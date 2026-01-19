@@ -1,3 +1,17 @@
+export const NUTRIENT_KEYS = [
+  "calories",
+  "carbs",
+  "fiber",
+  "protein",
+  "fat",
+  "satfat",
+  "sodium",
+] as const;
+
+export type NutrientKey = typeof NUTRIENT_KEYS[number];
+
+export type Nutrients = Partial<Record<NutrientKey, number>>;
+
 export interface Food {
   name: string;
   calories: number;
@@ -19,7 +33,7 @@ export interface Weight {
   date: string;
   weight: number;
 }
-export interface DailyMacros {
+export interface Macros {
   carbs: number;
   protein: number;
   fat: number;

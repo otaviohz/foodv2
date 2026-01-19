@@ -68,3 +68,53 @@
   satfat: 2.64
   sodium: 160
   notes: '1 ovo ~60g; tbca, media de varias amostras'
+- name: farofa de torresmo porchetto
+  portion: 100
+  calories: 450
+  carbs: 60
+  fiber: 4.8
+  protein: 3.9
+  fat: 20
+  satfat: 5.7
+  sodium: 391
+  notes: ''
+- name: whey protein crush underlabz doce de leite
+  portion: 35
+  calories: 130
+  carbs: 10
+  fiber: 0
+  protein: 21
+  fat: 0.7
+  satfat: 0.1
+  sodium: 86
+  notes: ''
+- name: iogurte zero batido itambe
+  portion: 100
+  calories: 26
+  carbs: 3.5
+  fiber: 0
+  protein: 3.1
+  fat: 0
+  satfat: 0
+  sodium: 37
+  notes: ''
+- name: teste1
+  portion: 100
+  calories: 100
+  carbs: 1
+  fiber: 1
+  protein: 1
+  fat: 1
+  satfat: 1
+  sodium: 1
+  notes: ''
+- name: aveia crua tbca
+  portion: 100
+  calories: 382
+  carbs: 65.3
+  fiber: 9.74
+  protein: 15.4
+  fat: 8.7
+  satfat: 1.54
+  sodium: 4.63
+  notes: 'media de diferentes amostras, brasil'

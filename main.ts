@@ -1,5 +1,5 @@
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.8";
-import { DailyMacros, Food, Log, Weight } from "./src/types.ts";
+import { Food, Log, Macros, Weight } from "./src/types.ts";
 import {
   listFoods,
   loadFoods,
