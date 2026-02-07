@@ -1,4 +1,5 @@
 import {
+  Confirm,
   Input,
   Number as CNumber,
   prompt,
@@ -92,6 +93,7 @@ export async function promptLog(): Promise<Log> {
       list: true,
       type: Input,
       suggestions: foodList,
+      validate: (f) => foodList.includes(f),
     },
     {
       name: "portion",
@@ -114,6 +116,19 @@ export async function promptLog(): Promise<Log> {
 
   const log: Log = { date, food, portion };
   return log;
+}
+
+export async function askAddAnotherLog(): Promise<boolean> {
+  const { again } = await prompt([
+    {
+      name: "again",
+      type: Confirm,
+      message: "Add another log?",
+      default: false,
+    },
+  ]);
+
+  return again ?? false;
 }
 
 export async function promptWeight() {

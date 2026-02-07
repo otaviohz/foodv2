@@ -1,31 +1,35 @@
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.8";
 import { Food, Log, Macros, Weight } from "./src/types.ts";
+import { askAddAnotherLog } from "./src/prompts.ts";
 import {
   listFoods,
   loadFoods,
   loadLogs,
-  loadWeights,
   saveFood,
   saveLog,
-  saveWeight,
   showDay,
 } from "./src/repo.ts";
 
-import { promptFood, promptLog, promptWeight } from "./src/prompts.ts";
+import { promptFood, promptLog } from "./src/prompts.ts";
 import { getISODate } from "./src/utils.ts";
 
 async function addFood() {
-  const db = loadFoods();
   const f: Food = await promptFood();
   await saveFood(f);
 }
 async function addLog() {
-  const db = loadLogs();
   const log: Log = await promptLog();
   await saveLog(log);
+
+  const another = await askAddAnotherLog();
+
+  if (another) {
+    return await addLog();
+  }
+  console.log("Done!");
 }
 
-async function addWeight() {
+async function _addWeight() {
 }
 
 async function main() {
