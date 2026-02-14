@@ -1,7 +1,8 @@
 import { Food, Log, Macros, Weight } from "./types.ts";
 import { readYaml, writeYaml } from "./db.ts";
-import {} from "./utils.ts";
+import { getISODate } from "./utils.ts";
 import { add, scale, sum, zero } from "./nutrients.ts";
+import { printDayHeader, printTotalsTable } from "./pretty.ts";
 
 const FOOD_DB = "./db/food.yaml";
 const LOG_DB = "./db/log.yaml";
@@ -90,7 +91,10 @@ export async function showDay(day: string) {
     .filter((e) => !foodDb.foodMap.has(e.food))
     .map((e) => e.food);
 
+  printDayHeader(getISODate());
+  console.log();
   console.log(totals);
+  // console.log(typeof totals);
   console.log(missingFoods);
 }
 
